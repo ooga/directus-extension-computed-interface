@@ -290,6 +290,33 @@ function _parseExpression(
 					});
 				}
 
+				if (op === "CATCH") {
+					try {
+						return parseExpression(
+							args[0],
+							values,
+							defaultValues,
+							debug,
+						);
+					} catch (e: unknown) {
+						if (debug) {
+							const errorMessage = e instanceof Error
+								? e.message
+								: String(e);
+							console.log(
+								`${args[0]} =`,
+								`FAIL: ${errorMessage}`,
+							);
+						}
+						return parseExpression(
+							args[1],
+							values,
+							defaultValues,
+							debug,
+						);
+					}
+				}
+
 				// binary operators
 				const valueA = parseExpression(args[0], values, defaultValues, debug);
 				const valueB = parseExpression(args[1], values, defaultValues, debug);

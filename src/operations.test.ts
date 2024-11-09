@@ -609,6 +609,11 @@ describe('Test parseExpression', () => {
       expect(parseExpression('RANGE(a, b, c)', { a: 1, b: 6, c: 2 })).toEqual([1, 3, 5]);
       expect(parseExpression('RANGE(a, b, c)', { a: 5, b: 0, c: -2 })).toEqual([5, 3, 1]);
     });
+
+		test('CATCH op', () => {
+			expect(parseExpression('CATCH(a.b, c)', { a: { b: 'ok' }, c: 'fallback' })).toEqual('ok');
+			expect(parseExpression('CATCH(a.b, c)', { a: null, c: 'fallback' })).toEqual('fallback');
+		});
   });
 
   describe('Nested expressions', () => {

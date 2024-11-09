@@ -237,6 +237,7 @@ Operator | Description
 Operator | Description
 --- | ---
 `RANGE(start, end, step)` | create an array of numbers from `start` to `end` with `step` increment/decrement. Example: `RANGE(1, 10, 2)` returns `[1, 3, 5, 7, 9]`.
+`CATCH(exp, fallback)` | return `exp` when no errors, otherwise `fallback` 
 
 ## Dynamic Variables
 
